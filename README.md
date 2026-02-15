@@ -1,45 +1,74 @@
 # Lesson Planning System
 
-## Project Documentation
+## Comprehensive Project Documentation
 
-### Introduction
-The Lesson Planning System is an intuitive application designed to assist teachers in creating and managing effective lesson plans. The primary goal of this project is to streamline the lesson planning process, making it simpler and more organized.
+### Features
+- User-friendly interface for teachers.
+- Create and manage lesson plans.
+- Assign standards and objectives to lesson plans.
+- Collaborate with colleagues on lesson planning.
+- Export lesson plans to various formats (PDF, Word).
 
-### Setup Instructions
-1. **Clone the repository**:
-   ```sh
+### Installation Guide
+1. Clone the repository:
+   ```bash
    git clone https://github.com/Okothoduo/lesson-planning-system.git
+   ```
+2. Navigate to the project directory:
+   ```bash
    cd lesson-planning-system
    ```
-2. **Install dependencies**:
-   ```sh
+3. Install required dependencies:
+   ```bash
    npm install
    ```
-3. **Configure environment variables**:
-   - Create a `.env` file in the root directory and enter the necessary configurations.
-4. **Run the application**:
-   ```sh
+4. Start the application:
+   ```bash
    npm start
    ```
 
-### Features
-- User-friendly interface for lesson planning.
-- Ability to save and edit lesson plans.
-- Integration with calendars for scheduling.
-- Collaboration features for team planning.
-- Customizable templates for various subjects.
+### Project Structure
+```plaintext
+lesson-planning-system/
+├── src/
+│   ├── components/     # React components
+│   ├── pages/          # Application pages
+│   ├── utils/          # Utility functions
+│   └── App.js          # Main application file
+├── public/             # Static files
+└── README.md           # Project documentation
+```
 
-### System Architecture
-The application follows a Model-View-Controller (MVC) architecture, separating the data handling, user interface, and application logic. The structure is as follows:
-- **Model**: Interacts with the database and handles data management.
-- **View**: Responsible for the UI components that users interact with.
-- **Controller**: Processes user input and updates the model and view accordingly.
+### Database Schema
+```plaintext
+users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
 
-### Technology Stack
-- **Frontend**: React.js
-- **Backend**: Node.js with Express
-- **Database**: MongoDB
-- **Deployment**: Heroku
+lessons (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  content TEXT,
+  user_id INT REFERENCES users(id),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
 
-### Conclusion
-The Lesson Planning System is an essential tool for educators seeking to improve their lesson planning efficiency. Stay tuned for more updates as we enhance features and functionalities!
+standards (
+  id SERIAL PRIMARY KEY,
+  lesson_id INT REFERENCES lessons(id),
+  description TEXT
+)
+```
+
+### Workflow Information
+1. **Login:** Users must log in to access their lesson plans.
+2. **Create Lesson Plans:** Users can create new lesson plans.
+3. **Collaboration:** Users can invite colleagues to edit lesson plans.
+4. **Exporting:** Completed lesson plans can be exported for printing or sharing.
+
+---
+
+This documentation provides a brief overview of the features, installation process, project structure, database schema, and workflow for the Lesson Planning System.
